@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping(value = "/api/posts", headers = "Accept=application/json")
 public class PostController {
     private List<Post> posts = new ArrayList<>();
-    @GetMapping("/")
+    @GetMapping("")
     public List<Post> fetchPosts() {
 
 //        posts.add(new Post(1L,"Post 1","This is my first post"));
@@ -37,4 +37,21 @@ public class PostController {
       posts.add(myStuff);
 
     }
+
+    @PutMapping("{id}")
+    public void updatePost(@PathVariable long id, @RequestBody Post post) {
+
+    }
+
+    @DeleteMapping("{id}")
+    public void deletePost(@PathVariable long id) {
+        for (Post post : posts) {
+            if (post.getId() == id) {
+                posts.remove(post);
+                return;
+            }
+        }
+
+    }
+
 }
