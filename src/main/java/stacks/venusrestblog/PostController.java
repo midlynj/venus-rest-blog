@@ -39,8 +39,14 @@ public class PostController {
     }
 
     @PutMapping("{id}")
-    public void updatePost(@PathVariable long id, @RequestBody Post post) {
+    public void updatePost(@PathVariable long id, @RequestBody Post updatePost) {
+        for (Post post : posts) {
+            if (post.getId() == id) {
+             post.setContent(updatePost.getContent());
+             post.setTitle(updatePost.getTitle());
 
+            }
+        }
     }
 
     @DeleteMapping("{id}")
